@@ -1,12 +1,11 @@
 "use client"
-import { Button, Table } from '@heroui/react';
+import { AlertDialog, Button, Table } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 
 const TableTAsk = ({p,deleteUser}) => {
 
     const a = async (id) => {
-
         await deleteUser(id)
     }
 
@@ -32,7 +31,34 @@ const TableTAsk = ({p,deleteUser}) => {
                         <Table.Cell>
                             <Link href={`/user/${v._id}`}><Button variant='outline'>Details</Button></Link>
                             <Link href={`/user/${v._id}/edit`}><Button variant='outline'>Edit</Button></Link>
-                            <Button onClick={() => a(v._id)} variant='danger'>Delete</Button>
+                            <AlertDialog>
+      <Button variant="danger">Delete</Button>
+      <AlertDialog.Backdrop>
+        <AlertDialog.Container>
+          <AlertDialog.Dialog className="sm:max-w-[400px]">
+            <AlertDialog.CloseTrigger />
+            <AlertDialog.Header>
+              <AlertDialog.Icon status="danger" />
+              <AlertDialog.Heading>Delete User permanently?</AlertDialog.Heading>
+            </AlertDialog.Header>
+            <AlertDialog.Body>
+              <p>
+                This will permanently delete <strong>{v.name}</strong> and all of its
+                data. This action cannot be undone.
+              </p>
+            </AlertDialog.Body>
+            <AlertDialog.Footer>
+              <Button slot="close" variant="tertiary">
+                Cancel
+              </Button>
+              <Button onClick={() => a(v._id)} slot="close" variant="danger">
+                Confirm Delete
+              </Button>
+            </AlertDialog.Footer>
+          </AlertDialog.Dialog>
+        </AlertDialog.Container>
+      </AlertDialog.Backdrop>
+    </AlertDialog>
                         </Table.Cell>
                     </Table.Row>
                 ))
