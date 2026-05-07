@@ -28,7 +28,7 @@ export const updateUser = async (id,formData) => {
     const newUser = Object.fromEntries(formData.entries())
     console.log(newUser)
     
-    const res = await fetch(`http://localhost:5000/user`,{
+    const res = await fetch(`http://localhost:5000/user/${id}`,{
         method: "PATCH",
         headers: {
             "content-type" : "application/json"

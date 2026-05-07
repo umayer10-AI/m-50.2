@@ -42,7 +42,7 @@ const run = async () => {
 
         app.post('/user', async (req,res) => {
             const newUser = req.body
-            console.log(newUser)
+            // console.log(newUser)
             
             const result = await userCollection.insertOne(newUser)
             res.send(result)
@@ -53,7 +53,7 @@ const run = async () => {
             const id = req.params.id
 
             const newUser = req.body
-            console.log(id)
+            console.log(newUser)
             
             const result = await userCollection.insertOne(newUser)
             res.send(result)
