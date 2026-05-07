@@ -48,6 +48,17 @@ const run = async () => {
             res.send(result)
         })
 
+        app.patch('/user/:id', async (req,res) => {
+
+            const id = req.params.id
+
+            const newUser = req.body
+            console.log(id)
+            
+            const result = await userCollection.insertOne(newUser)
+            res.send(result)
+        })
+
         app.delete('/user/:id', async (req,res) => {
             const id = req.params.id
             const query = {
