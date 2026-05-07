@@ -1,3 +1,4 @@
+import ModalTask from '@/component/ModalTask';
 import TableTAsk from '@/component/TableTAsk';
 import { deleteUser } from '@/lib/action';
 import { getUser } from '@/lib/data';
@@ -9,7 +10,10 @@ const page = async () => {
 
     return (
         <div>
-            <h2>User Page: {data.length}</h2>
+            <div className='flex justify-center gap-2 items-center my-5'>
+                <h2>User Page: {data.length}</h2>
+                <ModalTask></ModalTask>
+            </div>
             <TableTAsk p={data} deleteUser={deleteUser}></TableTAsk>
         </div>
     );
