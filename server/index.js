@@ -51,11 +51,20 @@ const run = async () => {
         app.patch('/user/:id', async (req,res) => {
 
             const id = req.params.id
+            const filter = {
+                _id: new ObjectId(id)
+            }
+            const m = req.body
 
-            const newUser = req.body
-            console.log(newUser)
+            const updateDocument = {
+                $set:{
+                    name: m.name,
+                    email: m.email,
+                    role: m.role
+                }
+            }
             
-            const result = await userCollection.insertOne(newUser)
+            const result = await userCollection.updateOne(filter,updateDocument)
             res.send(result)
         })
 
