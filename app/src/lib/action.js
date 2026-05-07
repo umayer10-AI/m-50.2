@@ -21,26 +21,27 @@ export const createUser = async (formData) => {
 
     console.log(data)
 }
-export const updateUser = async (formData) => {
+
+export const updateUser = async (id,formData) => {
     "use server"
 
-    // const newUser = Object.fromEntries(formData.entries())
-    // console.log(newUser)
+    const newUser = Object.fromEntries(formData.entries())
+    console.log(newUser)
     
-    // const res = await fetch(`http://localhost:5000/user`,{
-    //     method: "POST",
-    //     headers: {
-    //         "content-type" : "application/json"
-    //     },
-    //     body: JSON.stringify(newUser)
-    // })
-    // const data = await res.json()
+    const res = await fetch(`http://localhost:5000/user`,{
+        method: "PATCH",
+        headers: {
+            "content-type" : "application/json"
+        },
+        body: JSON.stringify(newUser)
+    })
+    const data = await res.json()
 
     // if(data.insertedId){
     //     revalidatePath('/user')
     // }
 
-    // console.log(data)
+    console.log(data)
 }
 
 export const deleteUser = async (id) => {
