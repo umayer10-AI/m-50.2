@@ -1,4 +1,5 @@
-import { Table } from '@heroui/react';
+import { Button, Table } from '@heroui/react';
+import Link from 'next/link';
 import React from 'react';
 
 const TableTAsk = ({p}) => {
@@ -21,7 +22,11 @@ const TableTAsk = ({p}) => {
                         <Table.Cell>{v.name}</Table.Cell>
                         <Table.Cell>{v.email}</Table.Cell>
                         <Table.Cell>{v.role}</Table.Cell>
-                        <Table.Cell>kate@acme.com</Table.Cell>
+                        <Table.Cell>
+                            <Link href={`/user/${v._id}`}><Button variant='outline'>Details</Button></Link>
+                            <Link href={`/user/${v._id}/edit`}><Button variant='outline'>Edit</Button></Link>
+                            <Button variant='danger'>Delete</Button>
+                        </Table.Cell>
                     </Table.Row>
                 ))
             }
