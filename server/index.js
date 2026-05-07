@@ -25,17 +25,17 @@ const run = async () => {
         const userCollection = db.collection("users");
 
         app.get('/user', async (req,res) => {
-            const cursor = userCollection.find()
+            const cursor = await userCollection.find()
             const result = await cursor.toArray()
             res.send(result)
         })
 
         app.get('/user/:id', async (req,res) => {
             const id = req.params.id
-            const filter = {
+            const query = {
                 _id: new ObjectId(id)
             }
-            const result = await userCollection.findOne()
+            const result = await userCollection.findOne(query)
             console.log(id)
             res.send(result)
         })
