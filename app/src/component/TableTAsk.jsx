@@ -1,8 +1,15 @@
+"use client"
 import { Button, Table } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 
-const TableTAsk = ({p}) => {
+const TableTAsk = ({p,deleteUser}) => {
+
+    const a = async (id) => {
+
+        await deleteUser(id)
+    }
+
     return (
         <div>
             <Table>
@@ -25,7 +32,7 @@ const TableTAsk = ({p}) => {
                         <Table.Cell>
                             <Link href={`/user/${v._id}`}><Button variant='outline'>Details</Button></Link>
                             <Link href={`/user/${v._id}/edit`}><Button variant='outline'>Edit</Button></Link>
-                            <Button variant='danger'>Delete</Button>
+                            <Button onClick={() => a(v._id)} variant='danger'>Delete</Button>
                         </Table.Cell>
                     </Table.Row>
                 ))
